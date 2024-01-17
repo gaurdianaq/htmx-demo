@@ -1,0 +1,7 @@
+- Implement contentful resolver to pull data in to populate components.
+  - pull data for navbar
+- update endpoints to create components endpoint, and then pass in a value of which component to pull, and allow the server to send the data back (so instead of calling a navbar endpoint, you call component with the value navbar and that returns the navbar element)
+- Implement coffee listing page
+- Implement coffee details page
+- Could I implement algolia with htmx?
+- Think on caching strategy, how often should I actually refetch data?
