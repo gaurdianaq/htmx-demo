@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  </head>
+  <body>
+    <nav id="navbar" hx-trigger="load" hx-get="/navbar"></nav>
+    <main
+      id="main-content"
+      class="content"
+      hx-trigger="load"
+      hx-get="/home"
+    ></main>
+  </body>
+</html>
