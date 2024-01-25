@@ -11,8 +11,10 @@ import {
 import { CoffeesService } from "./coffees.service";
 import { TCoffeeHit } from "@/types";
 import { ApiKeyGuard } from "src/common/api-key/api-key.guard";
+import { renderRichText } from "@/components/richtext"; //bad practice but rushing to get this out
+import { COFFEE_ROUTE_NAME } from "./coffees.constants";
 
-@Controller("coffees")
+@Controller(COFFEE_ROUTE_NAME)
 export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) {}
 

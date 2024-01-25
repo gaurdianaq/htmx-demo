@@ -28,8 +28,6 @@
     "@nestjs/jwt": "10.1.1",
     "@nestjs/mapped-types": "^2.0.3",
     "@nestjs/platform-express": "^10.2.8",
-    "@nestjs/serve-static": "^4.0.0",
-    "@types/express-handlebars": "^5.3.1",
     "algoliasearch": "^4.20.0",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
@@ -38,11 +36,11 @@
     "cookie-parser": "^1.4.6",
     "dotenv": "16.3.1",
     "drizzle-orm": "^0.28.6",
-    "express-handlebars": "^5.3.5",
     "neverthrow": "^6.1.0",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "@contentful/rich-text-html-renderer": "16.3.3"
   },
   "devDependencies": {
     "@algolia/client-common": "^4.20.0",

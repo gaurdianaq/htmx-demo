@@ -4,22 +4,41 @@ import { INavbarEntry, TNavItemEntry } from "@/componentContentfulTypes";
 import { INavbarProps, TAPIResponseMessage, TDropDown } from "@/types";
 import { createResponseMessage } from "@/utils";
 import { ResultAsync, okAsync } from "neverthrow";
+import { generateNavbar } from "./navbar";
+import { CoffeesService } from "src/coffees/coffees.service";
 
 @Injectable()
 export class ComponentsService {
-  constructor(private readonly contentfulService: ContentfulService) {}
+  constructor(
+    private readonly contentfulService: ContentfulService,
+    private readonly coffeeService: CoffeesService
+  ) {}
 
   getComponentProps(componentId: string) {
     switch (componentId) {
       case "navbar":
-        return this.getNavbarProps();
+        return this.getNavBar();
+      case "home":
+        console.log(this.getHome());
+        return okAsync(this.getHome());
+      case "secret":
+        return okAsync(this.getSecret());
     }
   }
 
+  private getHome() {
+    return `<p>This is the home page, try pressing space for a secret</p>
+    <div hx-get="/components/secret" hx-trigger="keydown[keyCode==32] from:body" id="secretbox"></div>`;
+  }
+
+  private getSecret() {
+    return `<div class="secretclass" hx-on:mouseenter="changeSecretColour()">Try hovering for a surprise!</div>`;
+  }
+
   //TODO figure out how to get the typing of this working as expected
-  private getNavbarProps(
+  private getNavBar(
     navbarTitle: string = "MainNav"
-  ): ResultAsync<INavbarProps, TAPIResponseMessage> {
+  ): ResultAsync<string, TAPIResponseMessage> {
     return this.contentfulService
       .getEntries<INavbarEntry>({
         content_type: "navbar",
@@ -42,6 +61,12 @@ export class ComponentsService {
             }
           ),
         } as INavbarProps);
+      })
+      .andThen((navbarProps) => {
+        return this.coffeeService.getCoffeeNavBarLinks().map((dropDowns) => {
+          navbarProps.navbarItems = navbarProps.navbarItems.concat(dropDowns);
+          return generateNavbar(navbarProps);
+        });
       });
   }
 }

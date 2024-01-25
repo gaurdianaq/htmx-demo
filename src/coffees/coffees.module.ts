@@ -8,5 +8,6 @@ import { AlgoliaModule } from "src/algolia/algolia.module";
   imports: [ContentfulModule, AlgoliaModule],
   providers: [CoffeesService],
   controllers: [CoffeesController],
+  exports: [CoffeesService],
 })
 export class CoffeesModule {}
