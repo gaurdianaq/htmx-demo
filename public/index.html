@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script>
+      function changeSecretColour() {
+        const secretbox = document.getElementById("secretbox");
+        secretbox.style.backgroundColor = "pink";
+      }
+    </script>
+  </head>
+  <body>
+    <nav
+      id="navbar"
+      class="navbar"
+      role="navigation"
+      aria-label="main navigation"
+      hx-trigger="load"
+      hx-get="/components/navbar"
+    ></nav>
+    <main
+      id="main-content"
+      class="content"
+      hx-trigger="load"
+      hx-get="/components/home"
+    ></main>
+  </body>
+</html>
